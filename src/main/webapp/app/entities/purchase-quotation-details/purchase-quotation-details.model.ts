@@ -8,11 +8,11 @@ export interface IPurchaseQuotationDetails {
   pricePerUnit?: number | null;
   totalPrice?: number | null;
   discount?: number | null;
-  lastModified?: string;
-  lastModifiedBy?: string;
+  lastModified?: string | null;
+  lastModifiedBy?: string | null;
   freeField1?: string | null;
   freeField2?: string | null;
-  products?: IProduct[] | null;
+  product?: IProduct | null;
   purchaseQuotation?: IPurchaseQuotation | null;
 }
 
@@ -24,11 +24,11 @@ export class PurchaseQuotationDetails implements IPurchaseQuotationDetails {
     public pricePerUnit?: number | null,
     public totalPrice?: number | null,
     public discount?: number | null,
-    public lastModified?: string,
-    public lastModifiedBy?: string,
+    public lastModified?: string | null,
+    public lastModifiedBy?: string | null,
     public freeField1?: string | null,
     public freeField2?: string | null,
-    public products?: IProduct[] | null,
+    public product?: IProduct | null,
     public purchaseQuotation?: IPurchaseQuotation | null
   ) {}
 }

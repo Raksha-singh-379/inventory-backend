@@ -30,15 +30,18 @@
                 <constraints nullable="true" />
             </column>
             <column name="last_modified" type="varchar(255)">
-                <constraints nullable="false" />
+                <constraints nullable="true" />
             </column>
             <column name="last_modified_by" type="varchar(255)">
-                <constraints nullable="false" />
+                <constraints nullable="true" />
             </column>
             <column name="free_field_1" type="varchar(255)">
                 <constraints nullable="true" />
             </column>
             <column name="free_field_2" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="product_id" type="bigint">
                 <constraints nullable="true" />
             </column>
             <column name="purchase_quotation_id" type="bigint">

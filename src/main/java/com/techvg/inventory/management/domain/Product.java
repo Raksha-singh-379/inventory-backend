@@ -100,7 +100,7 @@ public class Product implements Serializable {
 
     @OneToMany(mappedBy = "product")
     @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
-    @JsonIgnoreProperties(value = { "wareHouse", "product", "transfer" }, allowSetters = true)
+    @JsonIgnoreProperties(value = { "product", "transfer" }, allowSetters = true)
     private Set<TransferDetails> transferDetails = new HashSet<>();
 
     @ManyToOne
@@ -110,12 +110,8 @@ public class Product implements Serializable {
     private Unit unit;
 
     @ManyToOne
-    @JsonIgnoreProperties(value = { "securityPermissions", "securityRoles", "wareHouses", "productInventories" }, allowSetters = true)
+    @JsonIgnoreProperties(value = { "securityPermissions", "securityRoles", "wareHouses" }, allowSetters = true)
     private SecurityUser securityUser;
-
-    @ManyToOne
-    @JsonIgnoreProperties(value = { "products", "purchaseQuotation" }, allowSetters = true)
-    private PurchaseQuotationDetails purchaseQuotationDetails;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
 
@@ -511,19 +507,6 @@ public class Product implements Serializable {
 
     public Product securityUser(SecurityUser securityUser) {
         this.setSecurityUser(securityUser);
-        return this;
-    }
-
-    public PurchaseQuotationDetails getPurchaseQuotationDetails() {
-        return this.purchaseQuotationDetails;
-    }
-
-    public void setPurchaseQuotationDetails(PurchaseQuotationDetails purchaseQuotationDetails) {
-        this.purchaseQuotationDetails = purchaseQuotationDetails;
-    }
-
-    public Product purchaseQuotationDetails(PurchaseQuotationDetails purchaseQuotationDetails) {
-        this.setPurchaseQuotationDetails(purchaseQuotationDetails);
         return this;
     }
 

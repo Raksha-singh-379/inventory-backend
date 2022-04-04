@@ -197,46 +197,6 @@ class NotificationResourceIT {
 
     @Test
     @Transactional
-    void checkLastModifiedIsRequired() throws Exception {
-        int databaseSizeBeforeTest = notificationRepository.findAll().size();
-        // set the field null
-        notification.setLastModified(null);
-
-        // Create the Notification, which fails.
-        NotificationDTO notificationDTO = notificationMapper.toDto(notification);
-
-        restNotificationMockMvc
-            .perform(
-                post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(notificationDTO))
-            )
-            .andExpect(status().isBadRequest());
-
-        List<Notification> notificationList = notificationRepository.findAll();
-        assertThat(notificationList).hasSize(databaseSizeBeforeTest);
-    }
-
-    @Test
-    @Transactional
-    void checkLastModifiedByIsRequired() throws Exception {
-        int databaseSizeBeforeTest = notificationRepository.findAll().size();
-        // set the field null
-        notification.setLastModifiedBy(null);
-
-        // Create the Notification, which fails.
-        NotificationDTO notificationDTO = notificationMapper.toDto(notification);
-
-        restNotificationMockMvc
-            .perform(
-                post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(notificationDTO))
-            )
-            .andExpect(status().isBadRequest());
-
-        List<Notification> notificationList = notificationRepository.findAll();
-        assertThat(notificationList).hasSize(databaseSizeBeforeTest);
-    }
-
-    @Test
-    @Transactional
     void getAllNotifications() throws Exception {
         // Initialize the database
         notificationRepository.saveAndFlush(notification);
