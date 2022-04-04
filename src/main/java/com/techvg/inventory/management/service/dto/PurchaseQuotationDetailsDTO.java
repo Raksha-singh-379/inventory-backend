@@ -2,7 +2,6 @@ package com.techvg.inventory.management.service.dto;
 
 import java.io.Serializable;
 import java.util.Objects;
-import javax.validation.constraints.*;
 
 /**
  * A DTO for the {@link com.techvg.inventory.management.domain.PurchaseQuotationDetails} entity.
@@ -21,15 +20,15 @@ public class PurchaseQuotationDetailsDTO implements Serializable {
 
     private Double discount;
 
-    @NotNull
     private String lastModified;
 
-    @NotNull
     private String lastModifiedBy;
 
     private String freeField1;
 
     private String freeField2;
+
+    private ProductDTO product;
 
     private PurchaseQuotationDTO purchaseQuotation;
 
@@ -113,6 +112,14 @@ public class PurchaseQuotationDetailsDTO implements Serializable {
         this.freeField2 = freeField2;
     }
 
+    public ProductDTO getProduct() {
+        return product;
+    }
+
+    public void setProduct(ProductDTO product) {
+        this.product = product;
+    }
+
     public PurchaseQuotationDTO getPurchaseQuotation() {
         return purchaseQuotation;
     }
@@ -156,6 +163,7 @@ public class PurchaseQuotationDetailsDTO implements Serializable {
             ", lastModifiedBy='" + getLastModifiedBy() + "'" +
             ", freeField1='" + getFreeField1() + "'" +
             ", freeField2='" + getFreeField2() + "'" +
+            ", product=" + getProduct() +
             ", purchaseQuotation=" + getPurchaseQuotation() +
             "}";
     }

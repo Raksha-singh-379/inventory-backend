@@ -50,7 +50,7 @@
   "relationships": [
     {
       "otherEntityName": "purchaseQuotation",
-      "otherEntityRelationshipName": "goodRecived",
+      "otherEntityRelationshipName": "goodsReciveds",
       "relationshipName": "purchaseQuotation",
       "relationshipType": "many-to-one"
     }

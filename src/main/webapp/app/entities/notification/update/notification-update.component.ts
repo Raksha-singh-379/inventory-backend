@@ -33,8 +33,8 @@ export class NotificationUpdateComponent implements OnInit {
     isRead: [],
     freeField1: [],
     freeField2: [],
-    lastModified: [null, [Validators.required]],
-    lastModifiedBy: [null, [Validators.required]],
+    lastModified: [],
+    lastModifiedBy: [],
     securityUser: [],
     wareHouse: [],
   });

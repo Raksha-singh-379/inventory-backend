@@ -2,10 +2,7 @@ package com.techvg.inventory.management.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import java.io.Serializable;
-import java.util.HashSet;
-import java.util.Set;
 import javax.persistence.*;
-import javax.validation.constraints.*;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
@@ -39,12 +36,10 @@ public class PurchaseQuotationDetails implements Serializable {
     @Column(name = "discount")
     private Double discount;
 
-    @NotNull
-    @Column(name = "last_modified", nullable = false)
+    @Column(name = "last_modified")
     private String lastModified;
 
-    @NotNull
-    @Column(name = "last_modified_by", nullable = false)
+    @Column(name = "last_modified_by")
     private String lastModifiedBy;
 
     @Column(name = "free_field_1")
@@ -53,16 +48,15 @@ public class PurchaseQuotationDetails implements Serializable {
     @Column(name = "free_field_2")
     private String freeField2;
 
-    @OneToMany(mappedBy = "purchaseQuotationDetails")
-    @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
-    @JsonIgnoreProperties(
-        value = { "transferDetails", "categories", "unit", "securityUser", "purchaseQuotationDetails" },
-        allowSetters = true
-    )
-    private Set<Product> products = new HashSet<>();
+    @ManyToOne
+    @JsonIgnoreProperties(value = { "transferDetails", "categories", "unit", "securityUser" }, allowSetters = true)
+    private Product product;
 
     @ManyToOne
-    @JsonIgnoreProperties(value = { "purchaseQuotationDetails", "goodReciveds", "securityUser", "productInventories" }, allowSetters = true)
+    @JsonIgnoreProperties(
+        value = { "purchaseQuotationDetails", "goodsReciveds", "securityUser", "project", "clientDetails" },
+        allowSetters = true
+    )
     private PurchaseQuotation purchaseQuotation;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
@@ -197,34 +191,16 @@ public class PurchaseQuotationDetails implements Serializable {
         this.freeField2 = freeField2;
     }
 
-    public Set<Product> getProducts() {
-        return this.products;
+    public Product getProduct() {
+        return this.product;
     }
 
-    public void setProducts(Set<Product> products) {
-        if (this.products != null) {
-            this.products.forEach(i -> i.setPurchaseQuotationDetails(null));
-        }
-        if (products != null) {
-            products.forEach(i -> i.setPurchaseQuotationDetails(this));
-        }
-        this.products = products;
+    public void setProduct(Product product) {
+        this.product = product;
     }
 
-    public PurchaseQuotationDetails products(Set<Product> products) {
-        this.setProducts(products);
-        return this;
-    }
-
-    public PurchaseQuotationDetails addProduct(Product product) {
-        this.products.add(product);
-        product.setPurchaseQuotationDetails(this);
-        return this;
-    }
-
-    public PurchaseQuotationDetails removeProduct(Product product) {
-        this.products.remove(product);
-        product.setPurchaseQuotationDetails(null);
+    public PurchaseQuotationDetails product(Product product) {
+        this.setProduct(product);
         return this;
     }
 

@@ -27,10 +27,8 @@ public class NotificationDTO implements Serializable {
 
     private String freeField2;
 
-    @NotNull
     private String lastModified;
 
-    @NotNull
     private String lastModifiedBy;
 
     private SecurityUserDTO securityUser;
